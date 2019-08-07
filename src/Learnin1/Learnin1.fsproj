@@ -17,6 +17,7 @@
 	<Compile Include="ModVector.fs" />
 	<Compile Include="Model.fs" />
 	<Compile Include="App.fs" />
+	<Compile Include="ModVector.g.fs" />
 	<Compile Include="Model.g.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>

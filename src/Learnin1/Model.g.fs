@@ -21,7 +21,6 @@ module Mutable =
         //what is generated
         let _vec = Mutable.Components.ModVector.MVectorModel.Create(__initial.vec)
 ///////////////////////////
-        
         member x.currentModel = _currentModel :> IMod<_>
         member x.cameraState = _cameraState
         member x.vec = _vec
@@ -33,12 +32,12 @@ module Mutable =
                 
                 ResetMod.Update(_currentModel,v.currentModel)
                 Aardvark.UI.Primitives.Mutable.MCameraControllerState.Update(_cameraState, v.cameraState)
-////////////////////////////
+///////////////////////////
         //What it should be
                 Components.Mutable.ModVector.MVectorModel.Update(_vec, v.vec)
-        //what is generated
+        //What it is
                 Mutable.Components.ModVector.MVectorModel.Update(_vec, v.vec)
-////////////////////////////                
+///////////////////////////                
         
         static member Create(__initial : Learnin1.Model.Model) : MModel = MModel(__initial)
         static member Update(m : MModel, v : Learnin1.Model.Model) = m.Update(v)

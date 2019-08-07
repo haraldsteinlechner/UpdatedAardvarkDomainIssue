@@ -1,7 +1,7 @@
 ﻿namespace Components
 open Aardvark.Base.Incremental
 module ModNumeric =
-    //[<DomainType>]
+    [<DomainType>]
     type Model ={
         value:float
     }
