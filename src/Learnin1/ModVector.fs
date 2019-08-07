@@ -1,7 +1,7 @@
 ﻿namespace Components
 open Aardvark.Base.Incremental
 module ModNumeric =
-    [<DomainType>]
+    //[<DomainType>]
     type Model ={
         value:float
     }
@@ -17,7 +17,7 @@ module ModNumeric =
 
 
 module ModVector =
-    [<DomainType>]
+    [<DomainType>]  //Won't compile if uncommented
     type VectorModel ={
         x :ModNumeric.Model
         y :ModNumeric.Model
