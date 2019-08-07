@@ -1,4 +1,4 @@
-namespace __PROJECT_NAME__
+namespace Learnin1
 
 open System
 open Aardvark.Base
@@ -6,15 +6,17 @@ open Aardvark.Base.Incremental
 open Aardvark.UI
 open Aardvark.UI.Primitives
 open Aardvark.Base.Rendering
-open __PROJECT_NAME__.Model
+open Learnin1.Model
+open Components
 
 type Message =
     | ToggleModel
     | CameraMessage of FreeFlyController.Message
+    | VecUpdate of ModVector.Msg
 
 module App =
     
-    let initial = { currentModel = Box; cameraState = FreeFlyController.initial }
+    let initial = { currentModel = Box; cameraState = FreeFlyController.initial ; vec = {x={value= 1.0};y={value= 1.0};z={value= 1.0}}}
 
     let update (m : Model) (msg : Message) =
         match msg with
@@ -25,6 +27,8 @@ module App =
 
             | CameraMessage msg ->
                 { m with cameraState = FreeFlyController.update m.cameraState msg }
+            | VecUpdate msg -> {m with vec = ModVector.update m.vec msg}
+
 
     let view (m : MModel) =
 
@@ -48,15 +52,22 @@ module App =
             [
                 style "position: fixed; left: 0; top: 0; width: 100%; height: 100%"
             ]
+        require Html.semui (
+            body [] [
+                FreeFlyController.controlledControl m.cameraState CameraMessage frustum (AttributeMap.ofList att) sg
 
-        body [] [
-            FreeFlyController.controlledControl m.cameraState CameraMessage frustum (AttributeMap.ofList att) sg
+                div [style "position: fixed; left: 20px; top: 20px;color:white;";] [
+                    //button [clazz "ui button";onClick (fun _ -> Increment)] [text "+"]
+                    //button [clazz "ui button";onClick (fun _ -> Increment)] [text "-"]
+                    br[]
+                    text "My Value:"
+                    //Incremental.text (m.value |> Mod.map(fun x -> sprintf "%.1f" x))
+                    br[]
+                    br[]
+                    button [onClick (fun _ -> ToggleModel)] [text "Toggle Model"]
+                ]
 
-            div [style "position: fixed; left: 20px; top: 20px"] [
-                button [onClick (fun _ -> ToggleModel)] [text "Toggle Model"]
-            ]
-
-        ]
+            ])
 
     let app =
         {
