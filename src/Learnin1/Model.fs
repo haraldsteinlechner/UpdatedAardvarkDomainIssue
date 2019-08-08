@@ -1,4 +1,4 @@
-namespace __PROJECT_NAME__.Model
+namespace Learnin1.Model
 
 open System
 open Aardvark.Base
@@ -15,4 +15,5 @@ type Model =
     {
         currentModel    : Primitive
         cameraState     : CameraControllerState
+        vectorState     : Vector.State
     }

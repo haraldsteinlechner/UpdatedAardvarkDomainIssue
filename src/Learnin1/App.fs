@@ -1,4 +1,4 @@
-namespace __PROJECT_NAME__
+namespace Learnin1
 
 open System
 open Aardvark.Base
@@ -6,15 +6,16 @@ open Aardvark.Base.Incremental
 open Aardvark.UI
 open Aardvark.UI.Primitives
 open Aardvark.Base.Rendering
-open __PROJECT_NAME__.Model
+open Learnin1.Model
 
 type Message =
     | ToggleModel
     | CameraMessage of FreeFlyController.Message
+    | VUpdate of Vector.Msg
 
 module App =
     
-    let initial = { currentModel = Box; cameraState = FreeFlyController.initial }
+    let initial = { currentModel = Box; cameraState = FreeFlyController.initial ; vectorState = {x = {value = 1.0}; y= {value =2.0}; z = {value = 2.0}} }
 
     let update (m : Model) (msg : Message) =
         match msg with
@@ -25,6 +26,7 @@ module App =
 
             | CameraMessage msg ->
                 { m with cameraState = FreeFlyController.update m.cameraState msg }
+            |VUpdate msg -> {m with vectorState = Vector.update m.vectorState msg }
 
     let view (m : MModel) =
 

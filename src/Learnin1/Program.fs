@@ -1,4 +1,4 @@
-open __PROJECT_NAME__
+open Learnin1
 
 open Aardium
 open Aardvark.Service
