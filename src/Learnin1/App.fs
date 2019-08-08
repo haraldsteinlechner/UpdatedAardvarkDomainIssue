@@ -50,15 +50,22 @@ module App =
             [
                 style "position: fixed; left: 0; top: 0; width: 100%; height: 100%"
             ]
+        require Html.semui (
+            body [] [
+                FreeFlyController.controlledControl m.cameraState CameraMessage frustum (AttributeMap.ofList att) sg
 
-        body [] [
-            FreeFlyController.controlledControl m.cameraState CameraMessage frustum (AttributeMap.ofList att) sg
+                div [style "position: fixed; left: 20px; top: 20px;color:white;";] [
+                    //button [clazz "ui button";onClick (fun _ -> Increment)] [text "+"]
+                    //button [clazz "ui button";onClick (fun _ -> Increment)] [text "-"]
+                    br[]
+                    text "My Value:"
+                    //Incremental.text (m.value |> Mod.map(fun x -> sprintf "%.1f" x))
+                    br[]
+                    br[]
+                    button [onClick (fun _ -> ToggleModel)] [text "Toggle Model"]
+                ]
 
-            div [style "position: fixed; left: 20px; top: 20px"] [
-                button [onClick (fun _ -> ToggleModel)] [text "Toggle Model"]
-            ]
-
-        ]
+            ])
 
     let app =
         {
