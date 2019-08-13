@@ -15,7 +15,7 @@ module Mutable =
         let mutable __current : Aardvark.Base.Incremental.IModRef<Learnin1.Model.Model> = Aardvark.Base.Incremental.EqModRef<Learnin1.Model.Model>(__initial) :> Aardvark.Base.Incremental.IModRef<Learnin1.Model.Model>
         let _currentModel = ResetMod.Create(__initial.currentModel)
         let _cameraState = Aardvark.UI.Primitives.Mutable.MCameraControllerState.Create(__initial.cameraState)
-        let _vectorState = Mutable.Vector.MState.Create(__initial.vectorState)
+        let _vectorState = Vector.Mutable.MState.Create(__initial.vectorState)
         
         member x.currentModel = _currentModel :> IMod<_>
         member x.cameraState = _cameraState
@@ -28,7 +28,7 @@ module Mutable =
                 
                 ResetMod.Update(_currentModel,v.currentModel)
                 Aardvark.UI.Primitives.Mutable.MCameraControllerState.Update(_cameraState, v.cameraState)
-                Mutable.Vector.MState.Update(_vectorState, v.vectorState)
+                Vector.Mutable.MState.Update(_vectorState, v.vectorState)
                 
         
         static member Create(__initial : Learnin1.Model.Model) : MModel = MModel(__initial)

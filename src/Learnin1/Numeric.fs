@@ -1,4 +1,4 @@
-﻿module Numeric
+﻿namespace Numeric
 
 open Aardvark.Base.Incremental
 
@@ -10,7 +10,9 @@ type Msg =
 |Increment
 |Decrement
 
-let update m msg=             
-    match msg with 
-    | Increment -> {m with value = m.value + 0.1}
-    | Decrement -> {m with value = m.value - 0.1}
+[<AutoOpen>]
+module Numeric = 
+    let update m msg=             
+        match msg with 
+        | Increment -> {m with value = m.value + 0.1}
+        | Decrement -> {m with value = m.value - 0.1}

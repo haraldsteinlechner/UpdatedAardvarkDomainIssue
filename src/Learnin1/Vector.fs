@@ -1,4 +1,5 @@
-﻿module Vector
+﻿namespace Vector
+
 open Aardvark.Base.Incremental
 [<DomainType>]  
 type State ={
@@ -11,9 +12,13 @@ type Msg =
 |UpdateY of Numeric.Msg
 |UpdateZ of Numeric.Msg
 
-let update (m) (msg) = 
-    match msg with
-    |UpdateX v -> {m with x = Numeric.update m.x v}
-    |UpdateY v -> {m with y = Numeric.update m.y v}
-    |UpdateZ v -> {m with z = Numeric.update m.z v}
+[<AutoOpen>]
+module Vector = 
+    open Numeric
+
+    let update (m) (msg) = 
+        match msg with
+        |UpdateX v -> {m with x = Numeric.update m.x v}
+        |UpdateY v -> {m with y = Numeric.update m.y v}
+        |UpdateZ v -> {m with z = Numeric.update m.z v}
 

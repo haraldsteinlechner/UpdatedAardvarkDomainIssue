@@ -8,6 +8,8 @@ open Aardvark.UI.Primitives
 open Aardvark.Base.Rendering
 open Learnin1.Model
 
+open Vector
+
 type Message =
     | ToggleModel
     | CameraMessage of FreeFlyController.Message
